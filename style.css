@@ -48,7 +48,7 @@ canvas {
 ================================ */
 #icon-row {
   position: fixed;
-  left: 50%;
+  left: 5%;
   bottom: 30px;
   transform: translateX(-50%);
   display: flex;
@@ -200,3 +200,4 @@ canvas {
     display: none;
   }
 }
+
