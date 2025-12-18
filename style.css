@@ -1,0 +1,202 @@
+/* ================================
+   基本設定
+================================ */
+body {
+  margin: 0;
+  background: #111;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ================================
+   模型切換按鈕（左下角／手機置中）
+================================ */
+#ui-bar {
+  position: fixed;
+  left: 28px;
+  bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+
+.model-btn {
+  padding: 20px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.20);
+  border: 3px solid rgba(255,255,255,0.35);
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+.model-btn.active {
+  background: rgba(255,255,255,0.35);
+  border-color: rgba(255,255,255,0.8);
+}
+
+/* ================================
+   ICON + 滑桿區塊（底部中間）
+================================ */
+#icon-row {
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 20;
+}
+
+.top-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon-cube,
+.icon-light,
+.icon-camera {
+  width: 60px;
+  height: 60px;
+  color: #fff;
+  opacity: 0.9;
+}
+
+.top-icon input[type="range"] {
+  width: 80px;
+  height: 12px;
+  appearance: none;
+  background: rgba(255,255,255,0.3);
+  border-radius: 8px;
+}
+
+.top-icon input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+/* ================================
+   EXR 選單（右下角）
+================================ */
+.exr-dropdown {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  z-index: 9999;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* ================================
+   手機版排版（寬度小於 768px）
+================================ */
+@media (max-width: 768px) {
+  /* 模型按鈕移到底部中央 */
+  #ui-bar {
+    left: 50%;
+    bottom: 100px;
+    transform: translateX(-50%);
+    flex-direction: row;
+    gap: 12px;
+    z-index: 9999;
+  }
+.ui-section {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .model-btn {
+    width: 80px;
+    height: 60px;
+    font-size: 16px;
+    background: rgba(255,255,255,0.2);
+    border: 3px solid rgba(255,255,255,0.35);
+    color: #fff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0;
+  }
+
+  .model-btn.active {
+    background: rgba(255,255,255,0.35);
+    border-color: rgba(255,255,255,0.8);
+  }
+}
+
+
+  /* icon + 滑桿縮小並固定底部 */
+  #icon-row {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+  }
+
+  .icon-cube,
+  .icon-light,
+  .icon-camera {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* EXR 選單預設隱藏，點 ☰ 展開 */
+  .exr-panel {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .exr-panel.active {
+    transform: translateY(0%);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .exr-toggle {
+    display: block;
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+    z-index: 9999;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.4);
+    color: #fff;
+    font-size: 24px;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
+
+/* 桌機版不顯示 EXR 展開圖示 */
+@media (min-width: 769px) {
+  .exr-toggle {
+    display: none;
+  }
+}
